@@ -1,34 +1,37 @@
-#title {
-    background-color: #f83553;
-}
-
 body {
     font-family: "Montserrat", sans-serif;
-    font-weight: 600;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
-h1 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 900;
-    font-size: 3.5rem;
-    line-height: 1.5;
+p {
+    color: #8f8f8f;
 }
 
 h2 {
-    font-family: "Montserrat", sans-serif;
     font-weight: 900;
     font-size: 3rem;
-    line-height: 1.5;
 }
 
 h3 {
-    font-family: "Montserrat", sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
 }
 
 .container-fluid {
     padding: 3% 15% 7%;
+}
+
+#title {
+    background-color: #f83553;
+}
+
+/* Headings */
+
+.big-heading {
+    font-weight: 900;
+    font-size: 3.5rem;
+    color: white;
 }
 
 /* Navigation Bar */
@@ -56,18 +59,17 @@ h3 {
     margin: 5% 3% 5% 0;
 }
 
+/* Title Image*/
+
 .title-image {
     width: 60%;
     transform: rotate(25deg);
     position: absolute;
+    right: 30%;
 }
 
 .title-image-block {
     position: relative; /* Set title-image width relative to its parent */
-}
-
-p {
-    color: #b0b0b0;
 }
 
 /* Features */
@@ -110,6 +112,7 @@ p {
     padding: 7% 15%;
 }
 
+
 #press {
     background-color: #ef8172;
     padding-bottom: 3%;
@@ -137,7 +140,7 @@ p {
 @media (max-width: 1030px) {
     .title-image {
         position: static;
-        transform: rotate(0);
+        transform: rotate(0); /* transform property is absolute */
     }
 
     #title {
