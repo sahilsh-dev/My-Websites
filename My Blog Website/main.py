@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request
 import requests
+import smtplib
 
 app = Flask(__name__)
+server_address = "your email"
+server_password = "your email password"
 blog_url = "https://api.npoint.io/dfdffb31b3c8375aca7c"
 response = requests.get(blog_url)
 all_posts = response.json()
@@ -29,7 +32,14 @@ def get_contact_page():
         email = request.form["email"]
         phone = request.form["phone"]
         message = request.form["message"]
-        print(f"Name: {name} \nEmail: {email} \nPhone: {phone} \nMessage: {message} \n")
+        email_msg = f"Name: {name} \nEmail: {email} \nPhone: {phone} \nMessage: {message} \n"
+        print(email_msg)
+        
+        with smtplib.SMTP("smtp.gmail.com") as connection:
+            connection.starttls()
+            connection.login(user=server_address, password=server_password)
+            connection.sendmail(from_addr=server_address, to_addrs=server_address, msg=f"Subject:Server Message \n\n{email_msg}")
+
         return render_template("contact.html", is_message_sent="True")
     return render_template("contact.html")
 
