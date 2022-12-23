@@ -1,0 +1,33 @@
+/* This CSS file will need to be added to the styling of 
+your web pages for the styles to be rendered. */
+
+body {
+    background-color: #333;
+    color: white;
+}
+
+a {
+    color: #ffc107;
+}
+
+.jumbotron {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    color: white;
+    background-color: #333;
+}
+
+.extra-space {
+    padding: 3% 0;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 3.5rem;
+}
+
+.about-text {
+    font-size: 1.5rem;
+}
