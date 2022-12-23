@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
     {{ bootstrap.load_css() }}
-    <style>
-        body {
-            margin-top: 6%;
-        }
-        {% block styling %}{% endblock %}
-    </style>
+    <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
     {% block content %} {% endblock %}

@@ -2,8 +2,8 @@
 your web pages for the styles to be rendered. */
 
 body {
-background-color: #333;
-color: white;
+    background-color: #333;
+    color: white;
 }
 
 a {
@@ -11,15 +11,23 @@ a {
 }
 
 .jumbotron {
-  display: flex;
-  align-items: center;
-  margin: 0;
-  height: 100vh;
-  color: white;
-  background-color: #333;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    color: white;
+    background-color: #333;
 }
 
-.space-above {
-    margin-top: 20px;
-    padding-top: 20px;
+.extra-space {
+    padding: 3% 0;
+}
+
+.heading {
+    font-weight: 600;
+    font-size: 4rem;
+}
+
+.about-text {
+    font-size: 1.5rem;
 }
