@@ -42,11 +42,12 @@ def add_cafe():
 
 @app.route('/cafes')
 def cafes():
-    with open('cafe-data.csv', newline='') as csv_file:
-        csv_data = csv.reader(csv_file, delimiter=',')
+    with open('cafe-data.csv') as csv_file:
+        data = csv.reader(csv_file)
         list_of_rows = []
-        for row in csv_data:
+        for row in data:
             list_of_rows.append(row)
+            print(row)
     return render_template('cafes.html', cafes=list_of_rows)
 
 
