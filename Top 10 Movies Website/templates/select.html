@@ -11,11 +11,20 @@
 {% block title %}Select Movie{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1 class="heading">Select Movie</h1>
-  <p>
-    <a href="#"> MOVIE TITLE - MOVIE RELEASE DATE</a>
-  </p>
-
-</div>
+    <div class="container">
+        <h1 class="heading">Select Movie</h1>
+        <br>
+        {% for movie in search_list %}
+            <p>
+                <a href="{{ url_for('add',
+                    movie_title=movie['original_title'],
+                    movie_date=movie["release_date"],
+                    movie_description=movie["overview"],
+                    movie_img_url=movie["poster_path"]) }}">
+                    {{ movie['original_title'] }} - {{ movie['release_date'] }}
+                </a>
+            </p>
+            <br>
+        {% endfor %}
+    </div>
 {% endblock %}
