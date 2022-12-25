@@ -19,7 +19,7 @@ body {
 }
 
 .large {
-    font-size: 3rem;
+    font-size: 5rem;
 }
 
 .content {
@@ -71,8 +71,8 @@ p.overview {
 .card {
     color: inherit;
     cursor: pointer;
-    width: 450px;
-    height: 550px;
+    width: 500px;
+    height: 700px;
     perspective: 1000px;
     margin: 1rem auto;
     position: relative;
