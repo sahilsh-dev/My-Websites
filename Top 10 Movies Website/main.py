@@ -10,7 +10,7 @@ app.config["SECRET_KEY"] = "8BYkEfBA6O6donzWlSihBXox7C0sKR6b"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///new-database.db"
 app.app_context().push()
 db = SQLAlchemy(app)
-tmdb.API_KEY = "your_api_key"
+tmdb.API_KEY = "your-api-key"
 
 
 class Movie(db.Model):
@@ -40,7 +40,10 @@ db.session.commit()
 
 @app.route("/")
 def home():
-    movies_list = db.session.query(Movie).all()
+    movies_list = db.session.query(Movie).order_by(Movie.rating).all()
+    for i in range(len(movies_list)):
+        movies_list[i].ranking = len(movies_list) - i
+    db.session.commit()
     return render_template("index.html", movies=movies_list)
 
 
@@ -86,7 +89,7 @@ def add():
         )
         db.session.add(new_movie)
         db.session.commit()
-        return redirect(url_for('edit', movie_id=new_movie.id))
+        return redirect(url_for("edit", movie_id=new_movie.id))
     return render_template("add.html", form=form)
 
 
