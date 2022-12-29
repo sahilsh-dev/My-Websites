@@ -13,7 +13,7 @@ db = SQLAlchemy(app)
 
 
 # CREATE TABLE IN DB
-class User(UserMixin, db.Model):
+class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
@@ -24,13 +24,24 @@ class User(UserMixin, db.Model):
 db.create_all()
 
 
-@app.route('/')
+@app.route("/")
 def home():
     return render_template("index.html")
 
 
-@app.route('/register')
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        password = request.form.get('password')
+        hash_and_salted_password = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
+        new_user = User(
+            email=request.form.get('email'),
+            name=request.form.get('name'),
+            password=hash_and_salted_password
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for("secrets", name=request.form.get('name')))
     return render_template("register.html")
 
 
@@ -41,7 +52,8 @@ def login():
 
 @app.route('/secrets')
 def secrets():
-    return render_template("secrets.html")
+    name = request.args.get("name")
+    return render_template("secrets.html", name=name)
 
 
 @app.route('/logout')
@@ -51,7 +63,7 @@ def logout():
 
 @app.route('/download')
 def download():
-    pass
+    return send_from_directory("static", "files/cheat_sheet.pdf")
 
 
 if __name__ == "__main__":
