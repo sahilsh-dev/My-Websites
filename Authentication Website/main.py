@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 
 app = Flask(__name__)
+login_manager = LoginManager(app)
 
 app.config['SECRET_KEY'] = 'any-secret-key-you-choose'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -12,16 +13,20 @@ app.app_context().push()
 db = SQLAlchemy(app)
 
 
-# CREATE TABLE IN DB
-class User(db.Model):
+# Inherit UserMixin class for default implementation of properties for user representing class
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
-
-
-# Line below only required once, when creating DB.
+    
+    
 db.create_all()
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 @app.route("/")
@@ -32,8 +37,10 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        password = request.form.get('password')
-        hash_and_salted_password = generate_password_hash(password, method="pbkdf2:sha256", salt_length=8)
+        hash_and_salted_password = generate_password_hash(
+            request.form.get('password'),
+            method="pbkdf2:sha256",
+            salt_length=8)  # Amount of times to do salting
         new_user = User(
             email=request.form.get('email'),
             name=request.form.get('name'),
@@ -41,18 +48,27 @@ def register():
         )
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for("secrets", name=request.form.get('name')))
+        login_user(new_user)
+        return redirect(url_for("secrets"))
     return render_template("register.html")
 
 
-@app.route('/login')
+@app.route('/login', methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        user = User.query.filter_by(email=email).first()
+        if check_password_hash(user.password, password):
+            login_user(user)
+            return redirect(url_for("secrets"))
     return render_template("login.html")
 
 
 @app.route('/secrets')
+@login_required
 def secrets():
-    name = request.args.get("name")
+    name = current_user.name
     return render_template("secrets.html", name=name)
 
 
@@ -62,6 +78,7 @@ def logout():
 
 
 @app.route('/download')
+@login_required
 def download():
     return send_from_directory("static", "files/cheat_sheet.pdf")
 
