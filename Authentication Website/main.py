@@ -4,13 +4,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 
 app = Flask(__name__)
-login_manager = LoginManager(app)
 
 app.config['SECRET_KEY'] = 'any-secret-key-you-choose'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.app_context().push()
 db = SQLAlchemy(app)
+
+login_manager = LoginManager(app)
 
 
 # Inherit UserMixin class for default implementation of properties for user representing class
@@ -19,8 +20,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     name = db.Column(db.String(1000))
-    
-    
+
+
 db.create_all()
 
 
@@ -37,17 +38,26 @@ def home():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
+        email = request.form["email"]
+
+        # Check if email already present in database.
+        saved_user = User.query.filter_by(email=email).first()
+        if saved_user:
+            flash("You've already signed up with that email, Log in instead")
+            return redirect(url_for("login"))
+
         hash_and_salted_password = generate_password_hash(
             request.form.get('password'),
             method="pbkdf2:sha256",
             salt_length=8)  # Amount of times to do salting
         new_user = User(
-            email=request.form.get('email'),
-            name=request.form.get('name'),
+            email=email,
+            name=request.form["name"],
             password=hash_and_salted_password
         )
         db.session.add(new_user)
         db.session.commit()
+
         login_user(new_user)
         return redirect(url_for("secrets"))
     return render_template("register.html")
@@ -58,10 +68,12 @@ def login():
     if request.method == "POST":
         email = request.form.get("email")
         password = request.form.get("password")
-        user = User.query.filter_by(email=email).first()
-        if check_password_hash(user.password, password):
-            login_user(user)
+
+        saved_user = User.query.filter_by(email=email).first()
+        if check_password_hash(saved_user.password, password):
+            login_user(saved_user)
             return redirect(url_for("secrets"))
+        flash("Incorrect email or password!! Please try again.")
     return render_template("login.html")
 
 
@@ -74,7 +86,8 @@ def secrets():
 
 @app.route('/logout')
 def logout():
-    pass
+    logout_user()
+    return redirect(url_for("home"))
 
 
 @app.route('/download')
