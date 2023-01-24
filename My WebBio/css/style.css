@@ -1,0 +1,31 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    font-family: "Crimson Text", sans-serif;
+    font-size: 4.6rem;
+}
+
+section {
+    padding: 7% 15%;
+}
+
+/* Introduction */
+
+#intro {
+    background-image: url("/images/lion.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.intro-text {
+    padding-right: 10%;
+    text-align: left;
+}
+
+.name {
+    color: #ea0f1e;
+}
