@@ -5,12 +5,12 @@ body {
 }
 
 section {
-    padding: 7% 15%;
+    padding: 9% 15%;
 }
 
 .big-heading {
-    font-family: "Crimson Text", sans-serif;
-    font-size: 3.4rem;
+    font-family: "Roboto Slab", sans-serif;
+    font-size: 3.2rem;
     padding-right: 10%;
 }
 
@@ -26,6 +26,13 @@ section {
     font-weight: 400;
     font-size: 2.5rem;
     margin-bottom: 5%;
+}
+
+h3 {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-bottom: 3%;
 }
 
 p {
@@ -164,4 +171,40 @@ hr {
     background-color: #f1c40f;
 }
 
+/* Contact Me */
 
+.contact-btn {
+    background-color: #f5f5f5;
+    color: #2f3640;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    font-family: "Lato", sans-serif ;
+    font-weight: 700;
+}
+
+.contact-btn:hover {
+    background-color: #2f3640;
+    color: #f5f5f5;
+    box-shadow: 0 0 10px #2f3640; /* adds a subtle shadow on hover */
+}
+
+/* footer */
+
+#footer {
+    background-color: #ea0f1e;
+    text-align: center;
+}
+
+#footer a {
+    color: black;
+    padding: 0 5px;
+}
+
+.copyright {
+    color: black;
+    font-weight: 300;
+    padding-bottom: 0;
+}
