@@ -18,8 +18,14 @@ section {
     font-family: "Lato", sans-serif;
     font-size: 3rem;
     font-weight: 700;
-    color: white;
-    margin-bottom: 9%;
+    margin-bottom: 7%;
+}
+
+.sub-heading {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 2.5rem;
+    margin-bottom: 5%;
 }
 
 p {
@@ -38,6 +44,10 @@ hr {
     color: #ea0f1e;
 }
 
+.full-para {
+    padding-right: 16%;
+}
+
 /* Introduction */
 
 #intro {
@@ -47,10 +57,39 @@ hr {
     background-position: center center;
 }
 
-/* About Me */
+/* About */
 
 .game {
     float: right;
     margin-left: 10%;
-    margin-bottom: 10%;
+    margin-bottom: 20%;
 }
+
+/* Work Experience */
+
+.card {
+    width: 300px;
+    height: 350px;
+    margin: 3% 10% 5%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px #ccc;
+    display: inline-block;
+}
+
+.card img {
+    width: 100%;
+    height: 60%;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.card-content h2 {
+    font-family: "Lato", sans-serif;
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Skills */
