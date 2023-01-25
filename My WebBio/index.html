@@ -5,9 +5,9 @@
     <title>Sahil Sharma</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
 </head>
 <body>
-
     <!-- Introduction -->
 
     <section id="intro">
@@ -24,7 +24,7 @@
     <section id="about">
         <h2 class="section-heading">About Me</h2>
         <div>
-            <iframe class="game" src="https://v6p9d9t4.ssl.hwcdn.net/html/6871815-665662/index.html" width=440 height=350 style="border:none;"></iframe>
+            <iframe class="game" width=440 height=350 style="border:none;"></iframe>
             <!-- Made by Escada Games -->
             <p>My journey into the world of programming began after completing Class 10th. At that time, I had little
                 understanding of what programming was or the capabilities it held. However, during my Class 11th,
@@ -50,6 +50,7 @@
             </div>
     </section>
     <hr>
+
     <!-- Work Experience -->
 
 
@@ -59,5 +60,17 @@
     <!-- Contact me -->
 
 
+    <script>
+        const gameWrapper = document.getElementById("about");
+        const gameIframe = document.getElementsByClassName("game")[0];
+
+        // Add event listener for mouseover event
+        gameWrapper.addEventListener("mouseover", function() {
+          gameIframe.src = "https://v6p9d9t4.ssl.hwcdn.net/html/6871815-665662/index.html";
+
+          // Remove the event listener to prevent changing the src multiple times
+          gameWrapper.removeEventListener("mouseover", arguments.callee);
+        });
+    </script>
 </body>
 </html>
