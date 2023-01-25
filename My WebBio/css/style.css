@@ -37,7 +37,8 @@ p {
 }
 
 hr {
-    margin: 0;
+    width: 75%;
+    margin: auto;
 }
 
 .highlight {
@@ -93,3 +94,74 @@ hr {
 }
 
 /* Skills */
+
+#skills {
+    text-align: left;
+}
+
+.skill-container {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.skill {
+    width: 30%;
+    margin: 1% 9%;
+    text-align: left;
+}
+
+.skill h3 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 15px;
+    background-color: #ccc;
+    border-radius: 10px;
+    position: relative;
+}
+
+.skill-fill {
+    height: 100%;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.skill-fill.python {
+    width: 90%;
+    background-color: #0448dc;
+}
+
+.skill-fill.cpp {
+    width: 85%;
+    background-color: #ce0606;
+}
+
+.skill-fill.java {
+    width: 70%;
+    background-color: #06ce35;
+}
+
+.skill-fill.html {
+    width: 80%;
+    background-color: #ce4206;
+}
+
+.skill-fill.css {
+    width: 75%;
+    background-color: #3da0e1;
+}
+
+.skill-fill.javascript {
+    width: 70%;
+    background-color: #f1c40f;
+}
+
+
