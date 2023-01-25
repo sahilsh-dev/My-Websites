@@ -1,15 +1,41 @@
 body {
+    margin: 0;
     background-color: black;
     color: white;
 }
 
-h1 {
-    font-family: "Crimson Text", sans-serif;
-    font-size: 4.6rem;
-}
-
 section {
     padding: 7% 15%;
+}
+
+.big-heading {
+    font-family: "Crimson Text", sans-serif;
+    font-size: 3.4rem;
+    padding-right: 10%;
+}
+
+.section-heading {
+    font-family: "Lato", sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 9%;
+}
+
+p {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.1rem;
+    line-height: 30px;
+    font-weight: 300;
+    padding-bottom: 1rem;
+}
+
+hr {
+    margin: 0;
+}
+
+.highlight {
+    color: #ea0f1e;
 }
 
 /* Introduction */
@@ -21,11 +47,10 @@ section {
     background-position: center center;
 }
 
-.intro-text {
-    padding-right: 10%;
-    text-align: left;
-}
+/* About Me */
 
-.name {
-    color: #ea0f1e;
+.game {
+    float: right;
+    margin-left: 10%;
+    margin-bottom: 10%;
 }
