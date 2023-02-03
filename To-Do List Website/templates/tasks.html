@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}To-Do List{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="accordion accordion-flush">
+                    {% if tasks %}
+                        {% for task in tasks %}
+                            <label>
+                            <div class="accordion-item">
+                                <input type="checkbox" id="task-{{ task.id }}" class="task-checkbox">
+                                <label for="task-{{ task.id }}" class="task-label"></label>
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#task-body-{{ task.id }}" aria-expanded="false"
+                                            aria-controls="flush-collapseOne">
+                                        {{ task.heading }}
+                                    </button>
+                                </h2>
+                                <div id="task-body-{{ task.id }}" class="accordion-collapse collapse">
+                                    <div class="accordion-body">
+                                        {{ task.body }}
+                                    </div>
+                                </div>
+                            </div>
+                            </label>
+                        {% endfor %}
+                    {% else %}
+                        <h3 class="no-tasks-heading">You are all done! Enjoy!</h3>
+                        <img src="/static/images/no-tasks.jpg" class="no-tasks-image" alt="no-tasks image">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-5 add-tasks">
+                <h2>Add tasks</h2>
+                <form method="post">
+                    <label>
+                        <h3>Heading</h3>
+                        <textarea rows="1" cols="35" name="heading"></textarea>
+                    </label>
+                    <label>
+                        <h3>Task</h3>
+                        <textarea rows="5" cols="35" name="body"></textarea>
+                    </label>
+                    <br>
+                    <button class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}To-Do List{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1 class="heading display-4">To-Do List</h1>
+        <p class="lead">A Simple to-do list website, so you don't forget anything.</p>
+        <hr class="my-4">
+        <p>Enter the tasks you have to do later and check mark them when finished.</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="{{ url_for('tasks') }}" role="button">Start</a>
+        </p>
+    </div>
+{% endblock %}
