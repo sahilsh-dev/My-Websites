@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Lora, serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #f7f6ee;
+}
+
+nav {
+    height: 20vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20vh;
+}
+
+nav h3 {
+    font-size: 40px;
+    font-family: Satoshi, sans-serif;
+    font-weight: lighter;
+    letter-spacing: 3px;
+}
+
+nav h3 span {
+    font-family: inherit;
+    font-weight: bold;
+}
+
+#links {
+    display: flex;
+    gap: 10vh;
+}
+
+#links a {
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+#links a:hover {
+    text-decoration: underline;
+}
+
+#heading {
+    height: 40vh;
+    background-color: antiquewhite;
+}
